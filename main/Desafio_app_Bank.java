@@ -5,8 +5,6 @@ public class Desafio_app_Bank {
     String nombreCliente = "Tony Stark"; // nombre del cliente
     String tipoCuenta = "Corriente"; // tipo de cuenta
     double saldo = 1599.99; // saldo inicial
-    double montoRetiro = 0.0; // monto a retirar
-    double montoDeposito = 0.0; // monto a depositar
     int opcion = 0; // variable para almacenar la opción elegida por el usuario
     
     // Mostrar información del cliente y opciones
@@ -28,10 +26,42 @@ public class Desafio_app_Bank {
     while (opcion !=9) {
     System.out.println(menu);
     opcion = teclado.nextInt(); // leer la opción elegida por el usuario  
-    }
+    
+      switch (opcion) {
+        case 1:
+          // Consultar saldo
+          System.out.println("Su saldo actualizado es: " + saldo + "$");
+          break;
+        case 2:
+          // Retirar dinero
+          System.out.println("Ingrese el monto a retirar: ");
+          double valorRetiro = teclado.nextDouble(); // leer el monto a retirar
+          if (valorRetiro > saldo) {
+            System.out.println("No tiene suficiente saldo para realizar esta operación.");
+          } else {
+            saldo -= valorRetiro; // restar el monto del saldo
+            System.out.println("Retiro exitoso. Su nuevo saldo es: " + saldo + "$");
+          }
+          break;
+          case 3:
+          // Depositar dinero
+          System.out.println("Ingrese el monto a depositar: ");
+          double valorDeposito = teclado.nextDouble(); // leer el monto a depositar
+          saldo += valorDeposito; // sumar el monto al saldo
+          System.out.println("Depósito exitoso. Su nuevo saldo es: " + saldo + "$");
+          break;
+          case 9:
+          // Salir del programa
+          System.out.println("Gracias por usar nuestra app bancaria. Hasta luego!");
+          break;
+          default:
+          // Opción inválida
+          System.out.println("Opción inválida. Por favor, elija una opción válida.");
+      }
+  }
 
    
-    
+   teclado.close(); // cerrar el scanner para evitar fugas de memoria 
 
   }
   
